@@ -1,0 +1,6 @@
+services:
+  arch-dumpst:
+    build: .
+    volumes:
+      - ../folder-setup.sh:/home/tedt/folder-setup.sh
+      - ../system-setup.sh:/home/tedt/system-setup.sh
