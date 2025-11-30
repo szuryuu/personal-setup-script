@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Coloring
-INFO="\e[34m"      
-SUCCESS="\e[32m"   
-WARNING="\e[33m"   
+INFO="\e[34m"
+SUCCESS="\e[32m"
+WARNING="\e[33m"
 RESET="\e[0m"
 
 # Newline
@@ -13,7 +13,7 @@ newline() {
 
 # Setup folders
 MAINFOLDERS=("Downloads" "Pictures" "Personal")
-SUBFOLDERS=("archives" "works" "projects" "resources" "systems" "temp" )
+SUBFOLDERS=("archives" "works" "projects" "resources" "systems" "temp")
 
 echo -e "${INFO}[+] Creating main folders${RESET}"
 for main in "${MAINFOLDERS[@]}"; do
@@ -51,7 +51,7 @@ simple_loop() {
 
 find_folder() {
   local TARGET="$1"
-  
+
   for item in "${SUBFOLDERS[@]}"; do
     if [[ "$item" == "$TARGET" ]]; then
       echo "$item"
