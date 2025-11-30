@@ -72,7 +72,7 @@ if ! command -v yay &>/dev/null; then
   makepkg -si --noconfirm
   cd ..
   rm -rf yay
-else 
+else
   success "[-] yay already installed"
 fi
 
@@ -112,6 +112,7 @@ info "[+] Config"
 
 if [ -d "$HOME/.config" ]; then
   warning "[-] Backing up existing config.."
+  cp -r "$HOME/.config" "$HOME/.config-backup"
 fi
 
 git clone https://github.com/szuryuu/archway.git ~/Personal/temp/archway
