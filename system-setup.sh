@@ -82,8 +82,7 @@ else
 fi
 
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    RUNZSH=no CHSH=no
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 else
   omz update
 fi
@@ -137,9 +136,8 @@ fi
 
 git clone https://github.com/szuryuu/archway.git ~/Personal/temp/archway
 
-shopt -s dotglob # Copy files without
 cp -r ~/Personal/temp/archway/* ~/.config/ 2>/dev/null
-shopt -u dotglob
+cp ~/Personal/temp/archway/.* ~/.config/ 2>/dev/null
 
 rm -rf ~/Personal/temp/archway
 
