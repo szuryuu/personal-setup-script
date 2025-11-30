@@ -67,7 +67,7 @@ AUR_PACKAGES=(
 
 # Installing Packages
 
-if [["$TEST_MODE" == "true"]]; then
+if [[ "$TEST_MODE" == "true" ]]; then
     info "[+] TEST MODE: Installing core packages only"
     PACKAGES=("${CORE_PACKAGES[@]}")
 else
@@ -76,7 +76,7 @@ else
 fi
 
 info "[+] Installing Packages (Pacman)"
-sudo pacman -Syu --needed --noconfirm "${PACKAGES[@]}" { warning "Pacman failed"; exit 1; }
+sudo pacman -Syu --needed --noconfirm "${PACKAGES[@]}" || { warning "Pacman failed"; exit 1; }
 
 if [[ "$TEST_MODE" == "true" ]]; then
   warning "[+] TEST MODE: Skipping AUR and external tools"
@@ -94,7 +94,7 @@ else
   success "[-] yay already installed"
 fi
 
-if [ -d "$HOME/.oh-my-zsh" ]; then
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 else
   omz update
