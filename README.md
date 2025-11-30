@@ -1,4 +1,4 @@
-## ⚠️ Disclaimer
+## Disclaimer
 
 This is a personal automation script for fresh Arch Linux installations.
 It works for my specific setup and preferences.
@@ -16,3 +16,11 @@ It works for my specific setup and preferences.
 - Lost time debugging
 
 Use at your own risk. PR welcome for improvements.
+
+**How to use:**
+```bash
+git clone https://github.com/szuryuu/personal-setup-script.git
+cd personal-setup-script
+chmod +x starter.sh
+./starter.sh
+```
