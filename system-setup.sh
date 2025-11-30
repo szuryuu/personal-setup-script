@@ -126,7 +126,18 @@ git config --global core.editor "nvim"
 
 success "[+] Git configured with: $GIT_NAME <$GIT_EMAIL>"
 
-# ============================================
+# =============================================
+
+info "[+] Configuring Fonts"
+
+if ! command -v fc-list &>/dev/null; then
+    sudo pacman -S --noconfirm fontconfig
+fi
+
+wget https://github.com/IdreesInc/Monocraft/releases/download/v4.1/Monocraft.ttc -O ~/$HOME/.fonts/Monocraft.ttc
+fc-cache -fv ~/$HOME/.fonts
+
+# =============================================
 
 info "[+] Config"
 
