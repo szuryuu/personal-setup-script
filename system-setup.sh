@@ -21,9 +21,7 @@ warning ()
   echo -e "${WARNING}$1${RESET}"
 }
 
-# ============================================
-# Test mode
-TEST_MODE="${TEST_MODE:-false}"
+# =============================================
 
 CORE_PACKAGES=(
   "base-devel"
@@ -44,7 +42,6 @@ CORE_PACKAGES=(
   "zip"
 )
 
-# Skip in test mode
 GUI_PACKAGES=(
   "cava"
   "discord"
@@ -67,21 +64,11 @@ AUR_PACKAGES=(
 
 # Installing Packages
 
-if [[ "$TEST_MODE" == "true" ]]; then
-    info "[+] TEST MODE: Installing core packages only"
-    PACKAGES=("${CORE_PACKAGES[@]}")
-else
-    info "[+] Installing all packages"
-    PACKAGES=("${CORE_PACKAGES[@]}" "${GUI_PACKAGES[@]}")
-fi
+info "[+] Installing all packages"
+PACKAGES=("${CORE_PACKAGES[@]}" "${GUI_PACKAGES[@]}")
 
 info "[+] Installing Packages (Pacman)"
 sudo pacman -Syu --needed --noconfirm "${PACKAGES[@]}" || { warning "Pacman failed"; exit 1; }
-
-if [[ "$TEST_MODE" == "true" ]]; then
-  warning "[+] TEST MODE: Skipping AUR and external tools"
-  exit 0
-fi
 
 info "[+] Installing Packages (Direct)"
 if ! command -v yay &>/dev/null; then
@@ -117,8 +104,11 @@ yay -S --clean --noconfirm "${AUR_PACKAGES[@]}"
 
 info "[+] Configuring Git"
 
-GIT_EMAIL="${GIT_EMAIL:-user@example.com}"
-GIT_NAME="${GIT_NAME:-Default User}"
+warning "[?] Enter your email address"
+read GIT_EMAIL
+
+warning "[?] Enter your name"
+read GIT_NAME
 
 git config --global user.email "$GIT_EMAIL"
 git config --global user.name "$GIT_NAME"
@@ -134,16 +124,16 @@ if ! command -v fc-list &>/dev/null; then
     sudo pacman -S --noconfirm fontconfig
 fi
 
-wget https://github.com/IdreesInc/Monocraft/releases/download/v4.1/Monocraft.ttc -O ~/$HOME/.fonts/Monocraft.ttc
-fc-cache -fv ~/$HOME/.fonts
+wget https://github.com/IdreesInc/Monocraft/releases/download/v4.1/Monocraft.ttc -O ~/.fonts/Monocraft.ttc
+fc-cache -fv ~/.fonts
 
 # =============================================
 
 info "[+] Config"
 
-if [ -d "$HOME/.config" ]; then
+if [ -d "~/.config" ]; then
   warning "[-] Backing up existing config.."
-  cp -r "$HOME/.config" "$HOME/.config-backup"
+  cp -r "~/.config" "~/.config-backup"
 fi
 
 git clone https://github.com/szuryuu/archway.git ~/Personal/temp/archway

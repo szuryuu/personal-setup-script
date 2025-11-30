@@ -1,9 +1,0 @@
-services:
-  folder-test:
-    build:
-      context: ..
-      dockerfile: testing/Dockerfile
-    container_name: arch-folder-test
-    command: bash -c "tree Personal/ || find Personal/ -type d && bash"
-    stdin_open: true
-    tty: true

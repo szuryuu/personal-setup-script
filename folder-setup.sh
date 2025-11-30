@@ -109,7 +109,7 @@ projects() {
 }
 
 resources() {
-  local RESOURCE_FOLDERS=("knowledge" "sandbox" "notes" "templates" "snippets" )
+  local RESOURCE_FOLDERS=("knowledge" "sandbox" "notes" "templates" "snippets")
   local RESOURCE_DIR
   RESOURCE_DIR=$(find_folder "resources")
 
