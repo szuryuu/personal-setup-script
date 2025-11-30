@@ -12,7 +12,7 @@ This is a personal automation script designed for fresh Arch Linux installations
     -   **GUI**: `kitty`, `waybar`, `rofi`, `thunar`, `discord`, etc.
     -   **AUR**: Handles AUR packages like `zen-browser-bin` using `yay` (auto-installed if missing).
 -   **Dev Environment**: Sets up `rustup` (nightly), `bun`, and `oh-my-zsh` out of the box.
--   **System Configuration**: Applies global Git configurations, installs the **Monocraft** font, and syncs dotfiles.
+-   **System Configuration**: Applies global Git configurations, installs the **[Monocraft](https://github.com/IdreesInc/Monocraft.git)** font, and syncs dotfiles.
 
 ## How to Use This Script
 
@@ -23,7 +23,7 @@ You can use this repository to rapidly bootstrap a fresh Arch Linux environment.
 Clone this repository to your local machine:
 
 ```bash
-git clone [https://github.com/szuryuu/personal-setup-script.git](https://github.com/szuryuu/personal-setup-script.git)
+git clone https://github.com/szuryuu/personal-setup-script.git
 cd personal-setup-script
 ````
 
