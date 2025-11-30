@@ -1,6 +1,9 @@
 services:
-  arch-dumpst:
-    build: .
-    volumes:
-      - ../folder-setup.sh:/home/tedt/folder-setup.sh
-      - ../system-setup.sh:/home/tedt/system-setup.sh
+  folder-test:
+    build:
+      context: ..
+      dockerfile: testing/Dockerfile
+    container_name: arch-folder-test
+    command: bash -c "tree Personal/ || find Personal/ -type d && bash"
+    stdin_open: true
+    tty: true

@@ -7,4 +7,13 @@ RUN pacman -Syu --noconfirm sudo \
 USER tedt
 WORKDIR /home/tedt
 
+COPY --chown=tedt:tedt folder-setup.sh removing-folders.sh ./
+RUN chmod +x folder-setup.sh removing-folders.sh
+
+RUN ./folder-setup.sh
+
+RUN test -d Personal/projects/cli && \
+    test -d Personal/archives/project-completed && \
+    echo "Folder structure verified successfully"
+
 CMD ["sleep", "infinity"]
