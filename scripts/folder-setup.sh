@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Ensure in home directory
+cd "$HOME" || { echo "Failed to change to home directory"; exit 1; }
+
 # Coloring
 INFO="\e[34m"
 SUCCESS="\e[32m"
