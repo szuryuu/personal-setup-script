@@ -6,6 +6,7 @@ SUCCESS="\e[32m"
 WARNING="\e[33m"
 RESET="\e[0m"
 
+# Utility functions
 info()
 {
   echo -e "${INFO}$1${RESET}"
