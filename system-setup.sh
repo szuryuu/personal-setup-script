@@ -122,7 +122,7 @@ if ! command -v fc-list &>/dev/null; then
 fi
 
 mkdir -p ~/.fonts
-wget https://github.com/IdreesInc/Monocraft/releases/download/v4.1/Monocraft.ttc -O ~/.fonts/Monocraft.ttc
+wget -q --show-progress https://github.com/IdreesInc/Monocraft/releases/download/v4.1/Monocraft.ttc -O ~/.fonts/Monocraft.ttc
 fc-cache -fv ~/.fonts
 
 # =============================================
