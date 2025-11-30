@@ -82,7 +82,8 @@ else
 fi
 
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    RUNZSH=no CHSH=no
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 else
   omz update
 fi
@@ -104,11 +105,8 @@ yay -S --clean --noconfirm "${AUR_PACKAGES[@]}"
 
 info "[+] Configuring Git"
 
-warning "[?] Enter your email address"
-read GIT_EMAIL
-
-warning "[?] Enter your name"
-read GIT_NAME
+GIT_EMAIL="${GIT_EMAIL:-user@example.com}"
+GIT_NAME="${GIT_NAME:-Default User}"
 
 git config --global user.email "$GIT_EMAIL"
 git config --global user.name "$GIT_NAME"
@@ -124,6 +122,7 @@ if ! command -v fc-list &>/dev/null; then
     sudo pacman -S --noconfirm fontconfig
 fi
 
+mkdir -p ~/.fonts
 wget https://github.com/IdreesInc/Monocraft/releases/download/v4.1/Monocraft.ttc -O ~/.fonts/Monocraft.ttc
 fc-cache -fv ~/.fonts
 
@@ -131,14 +130,17 @@ fc-cache -fv ~/.fonts
 
 info "[+] Config"
 
-if [ -d "~/.config" ]; then
+if [ -d "$HOME/.config" ]; then
   warning "[-] Backing up existing config.."
-  cp -r "~/.config" "~/.config-backup"
+  cp -r "$HOME/.config" "$HOME/.config-backup"
 fi
 
 git clone https://github.com/szuryuu/archway.git ~/Personal/temp/archway
+
+shopt -s dotglob # Copy files without
 cp -r ~/Personal/temp/archway/* ~/.config/ 2>/dev/null
-cp -r ~/Personal/temp/archway/.* ~/.config/ 2>/dev/null
+shopt -u dotglob
+
 rm -rf ~/Personal/temp/archway
 
 success "[+] Setup Completed"
